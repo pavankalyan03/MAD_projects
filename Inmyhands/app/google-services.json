@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "70420678362",
+    "firebase_url": "https://seniors-cad13-default-rtdb.firebaseio.com",
+    "project_id": "seniors-cad13",
+    "storage_bucket": "seniors-cad13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70420678362:android:49860ab024e9574efd07e3",
+        "android_client_info": {
+          "package_name": "com.example.inmyhands"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDjQOQ_22QaCIO4CyaO1KBJKa-GIoNjIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

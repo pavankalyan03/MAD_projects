@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:id="@+id/parentLayout"
+              android:layout_gravity="center"
+              android:transitionName="etTransition"
+              android:gravity="center"
+              android:background="@color/colorPrimary"
+              android:layout_height="match_parent"
+              tools:context=".ProfileActivity">
+
+    <ImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"/>
+    <ImageView
+            android:layout_width="250dp"
+            android:id="@+id/profImage"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:src="@drawable/loginpro"
+            android:layout_height="250dp"/>
+    <EditText
+            android:inputType="textPersonName"
+            android:hint="User name..."
+            android:background="@drawable/input_outline"
+            android:padding="10dp"
+
+            android:layout_marginBottom="10dp"
+            android:id="@+id/etUsername"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:inputType="phone"
+            android:hint="Phone...07"
+
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_outline"
+            android:padding="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <Button
+            android:layout_width="match_parent"
+            android:text="Update Account"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/input_outline"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:id="@+id/btnUpdate"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>
