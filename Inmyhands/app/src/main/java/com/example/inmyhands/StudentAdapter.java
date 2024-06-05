@@ -1,6 +1,8 @@
 package com.example.inmyhands;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     private List<Map<String, Object>> students;
 
-    public StudentAdapter(List<Map<String, Object>> students) {
+    private Context context;
+    private String batch;
+
+    public StudentAdapter(Context context, List<Map<String, Object>> students, String batch) {
+        this.context = context;
         this.students = students;
+        this.batch = batch;
     }
 
     @Override
@@ -31,7 +38,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.branchTextView.setText((String) student.get("Branch"));
         holder.registernoTextView.setText((String) student.get("Registerno"));
         holder.vuidTextView.setText((String) student.get("Vuid"));
-        // Bind other fields similarly
+        holder.itemView.setTag(student.get("Registerno"));
     }
 
     @Override
@@ -44,7 +51,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         notifyDataSetChanged();
     }
 
-    public class StudentViewHolder extends RecyclerView.ViewHolder {
+    public class StudentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView nameTextView;
         public TextView branchTextView;
         public TextView registernoTextView;
@@ -56,6 +63,16 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             branchTextView = itemView.findViewById(R.id.branchTextView);
             registernoTextView = itemView.findViewById(R.id.registernoTextView);
             vuidTextView = itemView.findViewById(R.id.vuidTextView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            String registerno = (String) view.getTag();  // Get the registration number from the tag
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("reg", registerno);
+            intent.putExtra("batch", batch);
+            context.startActivity(intent);
         }
     }
 }

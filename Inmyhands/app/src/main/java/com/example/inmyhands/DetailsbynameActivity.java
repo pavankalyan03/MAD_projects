@@ -32,7 +32,7 @@ public class DetailsbynameActivity extends AppCompatActivity {
         batch = i.getStringExtra("batch");
 
         databaseReference = FirebaseDatabase.getInstance().getReference("16xgL7eKtJ_ZtoMKOWulSAxmSaE_QvTCNpUWGPKxD9jw").child(batch+"D");
-        adapter = new StudentAdapter(new ArrayList<>());
+        adapter = new StudentAdapter(this,new ArrayList<>(),batch);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView2);
         recyclerView.setAdapter(adapter);
