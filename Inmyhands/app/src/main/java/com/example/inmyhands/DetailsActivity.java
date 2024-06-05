@@ -20,11 +20,16 @@ public class DetailsActivity extends AppCompatActivity {
     private DatabaseReference studentRef;
 
     TextView Nametxt;
+    String batch,reg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        Intent intent = getIntent();
+        reg = intent.getStringExtra("reg");
+        batch = intent.getStringExtra("batch");
 
         Nametxt = findViewById(R.id.nametxt);
         recyclerView = findViewById(R.id.recyclerView); // Get your RecyclerView
@@ -32,10 +37,8 @@ public class DetailsActivity extends AppCompatActivity {
         studentAdapter = new keyvalueAdapter(new ArrayList<>());
         recyclerView.setAdapter(studentAdapter);
 
-        studentRef = FirebaseDatabase.getInstance().getReference("16xgL7eKtJ_ZtoMKOWulSAxmSaE_QvTCNpUWGPKxD9jw/Sheet1");
+        studentRef = FirebaseDatabase.getInstance().getReference("16xgL7eKtJ_ZtoMKOWulSAxmSaE_QvTCNpUWGPKxD9jw/"+batch);
 
-        Intent intent = getIntent();
-        String reg = intent.getStringExtra("reg");
         fetchStudentData(reg);
 
     }

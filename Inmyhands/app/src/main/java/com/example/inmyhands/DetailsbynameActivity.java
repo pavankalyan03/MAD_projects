@@ -21,7 +21,7 @@ public class DetailsbynameActivity extends AppCompatActivity {
     private List<Student> allStudents = new ArrayList<>();
     private StudentAdapter adapter;
 
-    String name;
+    String name, batch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,9 @@ public class DetailsbynameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailsbyname);
         Intent i = getIntent();
         name = i.getStringExtra("reg");
+        batch = i.getStringExtra("batch");
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("16xgL7eKtJ_ZtoMKOWulSAxmSaE_QvTCNpUWGPKxD9jw").child("Sheet2");
+        databaseReference = FirebaseDatabase.getInstance().getReference("16xgL7eKtJ_ZtoMKOWulSAxmSaE_QvTCNpUWGPKxD9jw").child(batch+"D");
         adapter = new StudentAdapter(new ArrayList<>());
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView2);
