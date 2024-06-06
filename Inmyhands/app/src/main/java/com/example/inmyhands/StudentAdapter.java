@@ -3,10 +3,13 @@ package com.example.inmyhands;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -37,8 +40,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.nameTextView.setText((String) student.get("Name"));
         holder.branchTextView.setText((String) student.get("Branch"));
         holder.registernoTextView.setText((String) student.get("Registerno"));
-        holder.vuidTextView.setText((String) student.get("Vuid"));
-        holder.itemView.setTag(student.get("Registerno"));
+        holder.vuidTextView.setText(String.valueOf(student.get("Student mobile")));
+        holder.itemView.setTag(R.id.registernoTextView, student.get("Registerno"));
+        holder.itemView.setTag(R.id.vuidTextView, String.valueOf(student.get("Student mobile")));
     }
 
     @Override
@@ -51,7 +55,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         notifyDataSetChanged();
     }
 
-    public class StudentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class StudentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
         public TextView nameTextView;
         public TextView branchTextView;
         public TextView registernoTextView;
@@ -68,11 +72,28 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
         @Override
         public void onClick(View view) {
-            String registerno = (String) view.getTag();  // Get the registration number from the tag
+            String registerno = (String) view.getTag(R.id.registernoTextView);
             Intent intent = new Intent(context, DetailsActivity.class);
             intent.putExtra("reg", registerno);
             intent.putExtra("batch", batch);
             context.startActivity(intent);
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            String studentMobile = (String) view.getTag(R.id.vuidTextView);
+            String url = "https://api.whatsapp.com/send?phone=91" + studentMobile;
+            try {
+                PackageManager pm = context.getPackageManager();
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                context.startActivity(i);
+            } catch (PackageManager.NameNotFoundException e) {
+                Toast.makeText(context, "Whatsapp app not installed in your phone", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            return true;
         }
     }
 }
